@@ -626,71 +626,6 @@
       font-size: 1.1rem;
     }
 
-    /* ===== TESTIMONIALS ===== */
-    .testimonials {
-      padding: 100px 40px;
-      background: var(--soft-white);
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 32px;
-    }
-
-    .testimonial-card {
-      background: white;
-      padding: 36px;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    }
-
-    .testimonial-stars {
-      color: var(--gold);
-      font-size: 1.2rem;
-      margin-bottom: 16px;
-    }
-
-    .testimonial-text {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--warm-brown);
-      margin-bottom: 24px;
-      font-style: italic;
-    }
-
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .testimonial-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-    }
-
-    .testimonial-info {
-      flex: 1;
-    }
-
-    .testimonial-name {
-      font-family: 'Noto Serif Thai', serif;
-      font-weight: 700;
-      color: var(--warm-brown);
-    }
-
-    .testimonial-role {
-      font-size: 0.85rem;
-      color: #7A5535;
-    }
-
     /* ===== FAQ SECTION ===== */
     .faq {
       padding: 100px 40px;
@@ -870,7 +805,6 @@
       .chapters,
       .benefits,
       .pricing,
-      .testimonials,
       .faq,
       .cta {
         padding: 60px 20px;
@@ -969,7 +903,6 @@
       <a href="#features" class="nav-link">คุณสมบัติ</a>
       <a href="#chapters" class="nav-link">สารบัญ</a>
       <a href="#benefits" class="nav-link">ประโยชน์</a>
-      <a href="#testimonials" class="nav-link">รีวิว</a>
       <a href="#faq" class="nav-link">FAQ</a>
     </div>
     <a href="#pricing" class="nav-cta">ซื้อเลย</a>
@@ -1210,99 +1143,35 @@
     <div class="section-container">
       <div class="section-header">
         <div class="section-label">ราคาพิเศษ</div>
-        <h2 class="section-title">เลือกแพ็กเกจที่เหมาะกับคุณ</h2>
+        <h2 class="section-title">ลงทุนเพื่ออนาคตลูกของคุณ</h2>
         <p class="section-desc">
-          ลงทุนครั้งเดียว เพื่ออนาคตทางการศึกษาของลูก
+          คุ้มค่าด้วยราคาเพียง 190 บาท เท่านั้น
         </p>
       </div>
-      <div class="pricing-grid">
+      <div class="pricing-grid" style="max-width: 500px;">
         <div class="pricing-card">
-          <h3 class="pricing-name">E-Book มาตรฐาน</h3>
-          <div class="pricing-price">290<span> บาท</span></div>
-          <div class="pricing-original">ปกติ 490 บาท</div>
+          <div style="position:absolute;top:0;right:0;background:var(--gold);color:white;padding:8px 20px;font-size:0.8rem;font-weight:700;border-bottom-left-radius:12px;">
+            คุ้มค่าที่สุดในตลาด
+          </div>
+          <h3 class="pricing-name">E-Book Home School</h3>
+          <div class="pricing-price">190<span> บาท</span></div>
+          <div class="pricing-original">ปกติ 490 บาท (ประหยัด 60%)</div>
           <ul class="pricing-features">
-            <li>ไฟล์ PDF คุณภาพสูง 200+ หน้า</li>
-            <li>เนื้อหาครบ 9 บท</li>
-            <li>อ่านได้ตลอดชีพ</li>
-            <li>อ่านได้ทุกอุปกรณ์</li>
-            <li>พิมพ์ออกมาอ่านได้</li>
-          </ul>
-          <button class="btn-primary" onclick="openModal('standard')" style="width:100%">
-            ซื้อเลย
-          </button>
-        </div>
-        <div class="pricing-card featured">
-          <h3 class="pricing-name">E-Book + Bonus</h3>
-          <div class="pricing-price">490<span> บาท</span></div>
-          <div class="pricing-original">ปกติ 890 บาท</div>
-          <ul class="pricing-features">
-            <li>ทุกอย่างในแพ็กเกจมาตรฐาน</li>
+            <li>📖 ไฟล์ PDF คุณภาพสูง 200+ หน้า</li>
+            <li>📚 เนื้อหาครบ 9 บท</li>
+            <li>♾️ อ่านได้ตลอดชีพ</li>
+            <li>📱 อ่านได้ทุกอุปกรณ์</li>
+            <li>🖨️ พิมพ์ออกมาอ่านได้</li>
             <li>🎁 Bonus: แผนการเรียนตัวอย่าง (IEP)</li>
             <li>🎁 Bonus: แบบประเมินพร้อมใช้</li>
             <li>🎁 Bonus: Portfolio Template</li>
-            <li>🎁 Bonus: กลุ่ม Facebook ส่วนตัว</li>
-            <li>🎁 Bonus: อัปเดตเนื้อหาฟรี 1 ปี</li>
           </ul>
-          <button class="btn-primary" onclick="openModal('premium')" style="width:100%">
-            ซื้อเลย
+          <button class="btn-primary" onclick="openModal()" style="width:100%;font-size:1.1rem;padding:18px;">
+            🛒 ซื้อเลย
           </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="testimonials" id="testimonials">
-    <div class="section-container">
-      <div class="section-header">
-        <div class="section-label">รีวิว</div>
-        <h2 class="section-title">สิ่งที่ผู้อ่านบอก</h2>
-        <p class="section-desc">
-          จากครอบครัวที่ทำ Home School จริง
-        </p>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">
-            "หนังสือเล่มนี้เปลี่ยนชีวิตครอบครัวเราเลยค่ะ ลูกที่เคยเบื่อโรงเรียน 
-            ตอนนี้มีความสุขกับการเรียนรู้ ขอบคุณผู้เขียนมากๆ ค่ะ"
+          <p style="margin-top:16px;font-size:0.85rem;color:#7A5535;">
+            🔒 ชำระเงินปลอดภัย • ได้รับไฟล์ภายใน 5 นาที
           </p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">👩</div>
-            <div class="testimonial-info">
-              <div class="testimonial-name">แม่ของน้องเอมมี่</div>
-              <div class="testimonial-role">Home School 2 ปี</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">
-            "เนื้อหาครบถ้วนมาก อ่านแล้วเข้าใจทันที ไม่ต้องไปหาข้อมูลเพิ่ม 
-            โดยเฉพาะบทเกี่ยวกับเด็ก LD มีประโยชน์มากครับ"
-          </p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">👨</div>
-            <div class="testimonial-info">
-              <div class="testimonial-name">พ่อของน้องวิน</div>
-              <div class="testimonial-role">Home School 6 เดือน</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-          <p class="testimonial-text">
-            "คุ้มค่ามากค่ะ โดยเฉพาะ Bonus ต่างๆ แผนการเรียนตัวอย่างช่วยเราได้เยอะ 
-            แนะนำให้ทุกคนที่กำลังคิดจะทำ Home School ค่ะ"
-          </p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">👩‍🦱</div>
-            <div class="testimonial-info">
-              <div class="testimonial-name">แม่ของน้องภูริส</div>
-              <div class="testimonial-role">Home School 1 ปี</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -1461,7 +1330,7 @@
     }
 
     // Modal
-    function openModal(packageType) {
+    function openModal() {
       document.getElementById('modal-overlay').classList.add('active');
     }
 
