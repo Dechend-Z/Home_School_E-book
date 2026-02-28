@@ -814,8 +814,8 @@
   .page-break { page-break-before: always; break-before: page; }
   .no-break { page-break-inside: avoid; break-inside: avoid; }
 
- /* ===== PRINT / PDF EXPORT STYLES ===== */
-@media print {
+  /* ===== PRINT / PDF EXPORT STYLES ===== */
+  @media print {
 
   @page {
     size: A4;
@@ -823,31 +823,34 @@
   }
 
   html, body {
-    width: auto;
-    height: auto;
     margin: 0;
     padding: 0;
-    background: white !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+    background: #fff !important;
+    width: auto !important;
+    height: auto !important;
   }
 
-  /* Remove sticky + screen effects */
-  .nav-bar {
-    display: none !important;
+  /* REMOVE ALL SCREEN BEHAVIOR */
+  * {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
   }
 
-  body {
-    background: white !important;
-  }
-
-  /* --- IMPORTANT: Remove forced 297mm height --- */
+  /* Kill vh problems */
   .cover,
   .toc-page,
   .chapter-page,
   .backmatter {
     min-height: auto !important;
     height: auto !important;
+  }
+
+  /* Force chapter start new page */
+  .page-break,
+  .chapter-page,
+  .toc-page,
+  .backmatter {
     page-break-before: always;
     break-before: page;
   }
@@ -856,40 +859,64 @@
     page-break-before: auto;
   }
 
-  /* Prevent content shifting */
-  .chapter-body,
-  .toc-page,
-  .backmatter {
-    padding: 0 !important;
+  /* REMOVE page separator */
+  .page-sep {
+    display: none !important;
+  }
+
+  /* Remove sticky nav */
+  .nav-bar {
+    display: none !important;
   }
 
   /* HERO FIX */
   .chapter-hero {
     height: auto !important;
-    padding: 30px 0 !important;
+    padding: 20px 0 !important;
   }
 
-  /* Prevent breaking inside important blocks */
-  .info-card,
-  .quote-box,
-  .callout,
+  /* Kill absolute decorative elements */
+  .cover-mandala,
+  .hero-geo,
+  .cover-decoration {
+    display: none !important;
+  }
+
+  /* Convert all grids to block (critical) */
+  .person-grid,
+  .country-grid,
+  .ld-grid,
+  .assess-grid,
+  .toc-grid {
+    display: block !important;
+  }
+
   .person-card,
   .country-card,
   .ld-card,
   .assess-card,
-  .timeline-item,
-  .step-item,
-  .toc-item,
-  .cover-author-box {
+  .toc-item {
+    display: block !important;
+    margin-bottom: 18px !important;
     break-inside: avoid !important;
     page-break-inside: avoid !important;
   }
 
-  /* ===== TABLE FIX ===== */
+  /* Lock cards */
+  .info-card,
+  .quote-box,
+  .callout,
+  .timeline-item,
+  .step-item {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
 
+  /* TABLE HARD LOCK */
   table {
+    width: 100%;
+    border-collapse: collapse;
     page-break-inside: auto;
-    break-inside: auto;
   }
 
   thead {
@@ -901,36 +928,28 @@
   }
 
   tr {
-    page-break-inside: avoid !important;
     break-inside: avoid !important;
+    page-break-inside: avoid !important;
   }
 
   th, td {
-    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 
-  /* Prevent grid splitting badly */
-  .person-grid,
-  .country-grid,
-  .ld-grid,
-  .assess-grid {
-    display: block;
+  /* Remove padding that shifts layout */
+  .chapter-body,
+  .toc-page,
+  .backmatter {
+    padding: 0 !important;
   }
 
-  .person-card,
-  .country-card,
-  .ld-card,
-  .assess-card {
-    margin-bottom: 20px;
-  }
-
-  /* Avoid text widows/orphans */
+  /* Prevent widow/orphan weird spacing */
   p, h2, h3 {
     orphans: 3;
     widows: 3;
   }
 
-  /* Keep backgrounds visible */
+  /* Keep colors */
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
