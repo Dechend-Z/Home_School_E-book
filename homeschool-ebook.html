@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home School: เส้นทางแห่งการเรียนรู้ที่ไม่มีขีดจำกัด</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;600;700;900&family=Noto+Sans+Thai:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FDF6EC;
+    --warm-brown: #4A2C0A;
+    --gold: #C9922A;
+    --gold-light: #E8B84B;
+    --terracotta: #C4623A;
+    --sage: #5C7A5E;
+    --sage-light: #8FAF91;
+    --dusty-rose: #C97B7B;
+    --sky: #4A7FA5;
+    --indigo: #3D4E8A;
+    --soft-white: #FEFAF4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Noto Sans Thai', sans-serif;
+    color: var(--warm-brown);
+    line-height: 1.8;
+  }
+
+  /* ===== COVER PAGE ===== */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a0e05 0%, #3D1F08 40%, #5C3015 70%, #7A4520 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 40px;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 30%, rgba(201,146,42,0.2) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(196,98,58,0.15) 0%, transparent 50%);
+  }
+
+  .cover-mandala {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    opacity: 0.06;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 700px;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: rgba(201,146,42,0.2);
+    border: 1px solid rgba(201,146,42,0.5);
+    color: var(--gold-light);
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    padding: 8px 24px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  .cover-title {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  }
+
+  .cover-title span {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .cover-subtitle {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 50px;
+    font-weight: 300;
+  }
+
+  .cover-divider {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 50px;
+  }
+
+  .cover-author-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,146,42,0.3);
+    border-radius: 12px;
+    padding: 28px 40px;
+    display: inline-block;
+  }
+
+  .cover-author-label {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .cover-author-name {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .cover-author-desc {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+  }
+
+  .cover-decoration {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .cover-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(201,146,42,0.4);
+  }
+
+  .cover-dot.active { background: var(--gold); width: 24px; border-radius: 3px; }
+
+  /* ===== TOC PAGE ===== */
+  .toc-page {
+    min-height: 100vh;
+    background: var(--soft-white);
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .toc-page::before {
+    content: 'สารบัญ';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: rgba(74,44,10,0.04);
+    white-space: nowrap;
+    font-weight: 700;
+  }
+
+  .toc-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .toc-label {
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .toc-title {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--warm-brown);
+  }
+
+  .toc-line {
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin: 16px auto 0;
+    border-radius: 2px;
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 24px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid rgba(74,44,10,0.06);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .toc-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201,146,42,0.15);
+    border-color: rgba(201,146,42,0.3);
+  }
+
+  .toc-num {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .toc-text { flex: 1; }
+
+  .toc-ch-label {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 4px;
+  }
+
+  .toc-ch-title {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--warm-brown);
+  }
+
+  /* ===== CHAPTER PAGES ===== */
+  .chapter-page {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chapter-hero {
+    height: 380px;
+    display: flex;
+    align-items: flex-end;
+    padding: 50px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ch-hero-content { position: relative; z-index: 2; }
+
+  .ch-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .ch-title {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.2;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    max-width: 600px;
+  }
+
+  .chapter-body {
+    background: white;
+    padding: 60px;
+    position: relative;
+  }
+
+  /* Graphic elements */
+  .info-card {
+    background: var(--cream);
+    border-radius: 16px;
+    padding: 30px;
+    margin: 30px 0;
+    border-left: 4px solid var(--gold);
+  }
+
+  .info-card.sage { border-left-color: var(--sage); background: #F0F7F1; }
+  .info-card.sky { border-left-color: var(--sky); background: #EFF5FA; }
+  .info-card.rose { border-left-color: var(--dusty-rose); background: #FAF0F0; }
+  .info-card.indigo { border-left-color: var(--indigo); background: #EEF0F8; }
+
+  .info-card-title {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .icon { font-size: 1.2rem; }
+
+  .chapter-body h2 {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--warm-brown);
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--cream);
+  }
+
+  .chapter-body h3 {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--warm-brown);
+    margin: 28px 0 12px;
+  }
+
+  .chapter-body p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: #3D2409;
+    margin-bottom: 16px;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding: 20px 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold), var(--terracotta));
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 28px;
+    padding-left: 12px;
+  }
+
+  .timeline-dot {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px var(--gold);
+    margin-top: 4px;
+  }
+
+  .timeline-content {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 20px 24px;
+    flex: 1;
+  }
+
+  .timeline-year {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .timeline-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--warm-brown);
+  }
+
+  /* Person cards */
+  .person-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+  }
+
+  .person-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border: 1px solid rgba(74,44,10,0.06);
+    transition: transform 0.3s;
+  }
+
+  .person-card:hover { transform: translateY(-4px); }
+
+  .person-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 16px;
+  }
+
+  .person-name {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .person-desc {
+    font-size: 0.8rem;
+    color: #7A5535;
+    line-height: 1.6;
+  }
+
+  /* Country comparison table */
+  .country-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin: 30px 0;
+  }
+
+  .country-card {
+    border-radius: 14px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .country-flag { font-size: 2rem; margin-bottom: 12px; display: block; }
+
+  .country-name {
+    font-family: 'Noto Serif Thai', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .country-details { font-size: 0.85rem; line-height: 1.7; }
+
+  /* LD symptom grid */
+  .ld-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 30px 0;
+  }
+
+  .ld-card {
+    border-radius: 14px;
+    padding: 22px;
+    text-align: center;
+  }
+
+  .ld-icon { font-size: 2.2rem; margin-bottom: 12px; }
+
+  .ld-name {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .ld-desc { font-size: 0.8rem; line-height: 1.6; }
+
+  /* Comparison table */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+
+  .compare-table th {
+    padding: 18px 24px;
+    font-family: 'Noto Serif Thai', serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: white;
+    text-align: center;
+  }
+
+  .compare-table td {
+    padding: 18px 20px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    border-bottom: 2px solid rgba(0,0,0,0.08);
+    vertical-align: top;
+  }
+
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  .compare-table tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+
+  /* Quote box */
+  .quote-box {
+    background: linear-gradient(135deg, var(--warm-brown), #6B3E18);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-box::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 10rem;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.2rem;
+    color: white;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+  }
+
+  .quote-author {
+    color: var(--gold-light);
+    font-size: 0.85rem;
+    margin-top: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Assessment visual */
+  .assess-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 30px 0;
+  }
+
+  .assess-card {
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .assess-num {
+    font-size: 2.5rem;
+    font-weight: 900;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 8px;
+  }
+
+  .assess-label {
+    font-family: 'Noto Serif Thai', serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+
+  .assess-desc { font-size: 0.8rem; line-height: 1.6; opacity: 0.8; }
+
+  /* Social skills */
+  .social-path {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 30px 0;
+    justify-content: center;
+  }
+
+  .social-node {
+    background: white;
+    border-radius: 50px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border: 1px solid rgba(74,44,10,0.08);
+  }
+
+  /* Page separator */
+  .page-sep {
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--terracotta), var(--sage));
+    margin: 0;
+  }
+
+  /* ===== CHAPTER HERO THEMES ===== */
+  .hero-1 { background: linear-gradient(135deg, #2C1654 0%, #4A2C8A 50%, #6B4DB5 100%); }
+  .hero-2 { background: linear-gradient(135deg, #0D3D2C 0%, #1A6B50 50%, #2E8B6B 100%); }
+  .hero-3 { background: linear-gradient(135deg, #6B1A1A 0%, #A63232 50%, #C45050 100%); }
+  .hero-4 { background: linear-gradient(135deg, #1A3D5C 0%, #2E6B9E 50%, #4A8DC0 100%); }
+  .hero-5 { background: linear-gradient(135deg, #3D2E0D 0%, #7A5A1A 50%, #C9922A 100%); }
+  .hero-6 { background: linear-gradient(135deg, #1A3D1A 0%, #2E6B2E 50%, #4A9B4A 100%); }
+  .hero-7 { background: linear-gradient(135deg, #2E1A3D 0%, #5C3A7A 50%, #8A5DB5 100%); }
+  .hero-8 { background: linear-gradient(135deg, #3D1A1A 0%, #7A3030 50%, #B56B6B 100%); }
+  .hero-9 { background: linear-gradient(135deg, #1A2E3D 0%, #2A4D6B 50%, #3D7AA3 100%); }
+
+  /* Geometric decoration in chapter heroes */
+  .hero-geo {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.12;
+  }
+
+  /* Steps */
+  .steps {
+    counter-reset: step;
+    margin: 30px 0;
+  }
+
+  .step-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: white;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .step-content { flex: 1; padding-top: 6px; }
+  .step-title { font-weight: 700; margin-bottom: 4px; font-family: 'Noto Serif Thai', serif; }
+  .step-desc { font-size: 0.9rem; color: #5C3A18; line-height: 1.7; }
+
+  /* Callout */
+  .callout {
+    background: linear-gradient(135deg, #FFF8EE, #FDF0D5);
+    border: 2px solid var(--gold-light);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin: 30px 0;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .callout-icon { font-size: 2rem; flex-shrink: 0; }
+  .callout-title { font-family: 'Noto Serif Thai', serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; color: var(--warm-brown); }
+  .callout-text { font-size: 0.9rem; line-height: 1.7; color: #5C3A18; }
+
+  /* Back-matter */
+  .backmatter {
+    background: linear-gradient(135deg, #1A0E05 0%, #3D1F08 100%);
+    padding: 80px 60px;
+    text-align: center;
+    color: white;
+  }
+
+  .back-title {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 20px;
+  }
+
+  .back-text { font-size: 1rem; line-height: 1.9; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 40px; }
+
+  .back-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .back-tag {
+    background: rgba(201,146,42,0.15);
+    border: 1px solid rgba(201,146,42,0.3);
+    color: var(--gold-light);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    .toc-grid, .person-grid, .country-grid, .ld-grid { grid-template-columns: 1fr; }
+    .chapter-body, .toc-page { padding: 40px 24px; }
+    .chapter-hero { padding: 40px 24px; height: 300px; }
+    .cover-title { font-size: 2.5rem; }
+    .toc-page { padding: 50px 24px; }
+  }
+
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(253,246,236,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(74,44,10,0.1);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Noto Serif Thai', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--warm-brown);
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 1px solid rgba(74,44,10,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--warm-brown);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .nav-link:hover { background: var(--gold); color: white; border-color: var(--gold); }
+
+  .section-intro {
+    font-size: 1.05rem;
+    color: #5C3A18;
+    line-height: 1.9;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--cream);
+    margin-bottom: 30px;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <div class="nav-logo">📚 Home<span>School</span> E-Book</div>
+  <div class="nav-links">
+    <a class="nav-link" href="#toc">☰</a>
+    <a class="nav-link" href="#ch1">1</a>
+    <a class="nav-link" href="#ch2">2</a>
+    <a class="nav-link" href="#ch3">3</a>
+    <a class="nav-link" href="#ch4">4</a>
+    <a class="nav-link" href="#ch5">5</a>
+    <a class="nav-link" href="#ch6">6</a>
+    <a class="nav-link" href="#ch7">7</a>
+    <a class="nav-link" href="#ch8">8</a>
+    <a class="nav-link" href="#ch9">9</a>
+  </div>
+</nav>
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <svg class="cover-mandala" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="200" cy="200" r="180" stroke="white" stroke-width="1" stroke-dasharray="4 8"/>
+    <circle cx="200" cy="200" r="140" stroke="white" stroke-width="1"/>
+    <circle cx="200" cy="200" r="100" stroke="white" stroke-width="1" stroke-dasharray="2 6"/>
+    <circle cx="200" cy="200" r="60" stroke="white" stroke-width="1"/>
+    <circle cx="200" cy="200" r="20" fill="white"/>
+    <line x1="200" y1="20" x2="200" y2="380" stroke="white" stroke-width="0.5"/>
+    <line x1="20" y1="200" x2="380" y2="200" stroke="white" stroke-width="0.5"/>
+    <line x1="73" y1="73" x2="327" y2="327" stroke="white" stroke-width="0.5"/>
+    <line x1="327" y1="73" x2="73" y2="327" stroke="white" stroke-width="0.5"/>
+    <polygon points="200,40 350,280 50,280" fill="none" stroke="white" stroke-width="0.8"/>
+    <polygon points="200,360 50,120 350,120" fill="none" stroke="white" stroke-width="0.8"/>
+  </svg>
+  <div class="cover-content">
+    <div class="cover-badge">E-Book • การศึกษานอกระบบ</div>
+    <h1 class="cover-title">Home School<br><span>เส้นทางแห่งการ<br>เรียนรู้ที่ไม่มีขีดจำกัด</span></h1>
+    <p class="cover-subtitle">คู่มือสำหรับผู้ปกครองและเด็กทุกคนที่เชื่อว่า<br>การศึกษาไม่ได้มีรูปแบบเดียว</p>
+    <div class="cover-divider"></div>
+    <div class="cover-author-box">
+      <div class="cover-author-label">เรียบเรียงโดย</div>
+      <div class="cover-author-name">ผู้เชี่ยวชาญการศึกษานอกระบบ</div>
+      <div class="cover-author-desc">ประสบการณ์ 20+ ปี • แม่ของเด็ก LD • นักการศึกษาทางเลือก</div>
+    </div>
+  </div>
+  <div class="cover-decoration">
+    <div class="cover-dot"></div>
+    <div class="cover-dot active"></div>
+    <div class="cover-dot"></div>
+    <div class="cover-dot"></div>
+    <div class="cover-dot"></div>
+  </div>
+</div>
+
+<div class="page-sep"></div>
+
+<!-- ===== TABLE OF CONTENTS ===== -->
+<div class="toc-page" id="toc">
+  <div class="toc-header">
+    <div class="toc-label">Contents</div>
+    <h2 class="toc-title">สารบัญ</h2>
+    <div class="toc-line"></div>
+  </div>
+  <div class="toc-grid">
+    <a class="toc-item" href="#ch1">
+      <div class="toc-num" style="background:linear-gradient(135deg,#4A2C8A,#6B4DB5)">1</div>
+      <div class="toc-text">
+        <div class="toc-ch-label">Chapter 1</div>
+        <div class="toc-ch-title">Home School คืออะไร? ประวัติและที่มา</div>
+      </div>
+    </a>
+    <a class="toc-item" href="#ch2">
+      <div class="toc-num" style="background:linear-gradient(135deg,#1A6B50,#2E8B6B)">2</div>
+      <div class="toc-text">
+        <div class="toc-ch-label">Chapter 2</div>
+        <div class="toc-ch-title">บุคคลสำคัญที่เคยเรียน Home School</div>
+      </div>
+    </a>
+    <a class="toc-item" href="#ch3">
+      <div class="toc-num" style="background:linear-gradient(135deg,#A63232,#C45050)">3</div>
+      <div class="toc-text">
+        <div class="toc-ch-label">Chapter 3</div>
+        <div class="toc-ch-title">LD คืออะไร? รู้จักอาการและประเภท</div>
+      </div>
+    </a>
+    <a class="toc-item" href="#ch4">
+      <div class="toc-num" style="background:linear-gradient(135deg,#2E6B9E,#4A8DC0)">4</div>
+      <div class="toc-text">
+        <div class="toc-ch-label">Chapter 4</div>
+        <div class="toc-ch-title">แนวทาง Home School ในแต่ละประเทศ</div>
+      </div>
+    </a>
+    <a class="toc-item" href="#ch5">
+      <div class="toc-num" style="background:linear-gradient(135deg,#7A5A1A,#C9922A)">5</div>
+      <div class="toc-text">
+        <div class="toc-ch-label">Chapter 5</div>
+        <div class="toc-ch-title">การประเมินผลและวัดระดับผลการเรียน</div>
+      </div>
+    </a>
+    <a class="toc-item" href="#ch6">
+      <div class="toc-num" style="background:linear-gradient(135deg,#2E6B2E,#4A9B4A)">6</div>
+      <div class="toc-text">
+        <div class="toc-ch-label">Chapter 6</div>
+        <div class="toc-ch-title">การเข้าสังคมของเด็ก Home School</div>
+      </div>
+    </a>
+    <a class="toc-item" href="#ch7">
+      <div class="toc-num" style="background:linear-gradient(135deg,#5C3A7A,#8A5DB5)">7</div>
+      <div class="toc-text">
+        <div class="toc-ch-label">Chapter 7</div>
+        <div class="toc-ch-title">เด็กความต้องการพิเศษ vs เด็กความสามารถพิเศษ</div>
+      </div>
+    </a>
+    <a class="toc-item" href="#ch8">
+      <div class="toc-num" style="background:linear-gradient(135deg,#7A3030,#B56B6B)">8</div>
+      <div class="toc-text">
+        <div class="toc-ch-label">Chapter 8</div>
+        <div class="toc-ch-title">เริ่มต้น Home School อย่างไรให้ได้ผล</div>
+      </div>
+    </a>
+    <a class="toc-item" href="#ch9">
+      <div class="toc-num" style="background:linear-gradient(135deg,#2A4D6B,#3D7AA3)">9</div>
+      <div class="toc-text">
+        <div class="toc-ch-label">Chapter 9</div>
+        <div class="toc-ch-title">โน้มน้าวใจเด็กให้กลับมาสนใจการเรียนรู้</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="page-sep"></div>
+
+<!-- ===== CHAPTER 1 ===== -->
+<div class="chapter-page" id="ch1">
+  <div class="chapter-hero hero-1">
+    <svg class="hero-geo" width="400" height="400" viewBox="0 0 400 400">
+      <polygon points="200,20 380,320 20,320" fill="none" stroke="white" stroke-width="40"/>
+      <polygon points="200,100 320,300 80,300" fill="none" stroke="white" stroke-width="20"/>
+      <circle cx="200" cy="200" r="80" fill="none" stroke="white" stroke-width="15"/>
+    </svg>
+    <div class="ch-hero-content">
+      <div class="ch-badge" style="background:rgba(255,255,255,0.15)">Chapter 01 • ประวัติความเป็นมา</div>
+      <h2 class="ch-title">Home School คืออะไร?<br>รากเหง้าแห่งการศึกษาที่บ้าน</h2>
+    </div>
+  </div>
+  <div class="chapter-body">
+    <p class="section-intro">"ก่อนที่จะมีโรงเรียน มนุษย์เรียนรู้ที่บ้าน ในธรรมชาติ และในชีวิตจริง — Home School ไม่ใช่สิ่งใหม่ แต่เป็นการกลับสู่ต้นกำเนิดของการศึกษา"</p>
+
+    <h2>🏡 นิยาม Home School</h2>
+    <p>Home School หรือ Homeschooling คือรูปแบบการศึกษาที่ผู้ปกครองหรือผู้ดูแลเป็นผู้รับผิดชอบหลักในการจัดการเรียนรู้ให้กับบุตรหลาน โดยไม่ส่งไปเรียนในโรงเรียนทั่วไป การเรียนอาจเกิดขึ้นในบ้าน ชุมชน หรือสภาพแวดล้อมที่หลากหลาย ทั้งแบบมีโครงสร้างและแบบยืดหยุ่น</p>
+
+    <div class="info-card">
+      <div class="info-card-title"><span class="icon">📖</span> คำจำกัดความสากล</div>
+      <p style="margin:0;font-size:0.95rem">HSLDA (Home School Legal Defense Association) นิยาม Home School ว่าคือ "การศึกษาที่บิดามารดาหรือผู้ปกครองจัดให้บุตรหลานเรียนที่บ้านหรือสภาพแวดล้อมนอกโรงเรียน โดยผู้ปกครองมีบทบาทเป็นครูหรือผู้จัดการการเรียนรู้"</p>
+    </div>
+
+    <h2>⏳ เส้นเวลาประวัติ Home School</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">ก่อนคริสต์ศักราช — ยุคโบราณ</div>
+          <div class="timeline-text">ในอารยธรรมกรีก โรมัน และจีน เด็กชนชั้นสูงเรียนรู้ที่บ้านกับครูพิเศษ (Tutor) โสเครตีส เพลโต และขงจื๊อ ต่างสอนในรูปแบบการสนทนาส่วนตัว ไม่ใช่ในห้องเรียน</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--terracotta);box-shadow:0 0 0 3px var(--terracotta)"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">ค.ศ. 1600–1800</div>
+          <div class="timeline-text">ยุโรปและอเมริกา เด็กส่วนใหญ่เรียนที่บ้านกับพ่อแม่หรือผ่านโบสถ์ การศึกษาผูกติดกับศาสนา ผู้ก่อตั้งสหรัฐฯ หลายคน เช่น Benjamin Franklin และ Abraham Lincoln ก็เป็น homeschooler</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--sage);box-shadow:0 0 0 3px var(--sage)"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">ค.ศ. 1852</div>
+          <div class="timeline-text">รัฐแมสซาชูเซตส์ สหรัฐอเมริกา ออกกฎหมายบังคับการศึกษาภาคบังคับฉบับแรก ทำให้ Home School ลดลงอย่างมาก แต่ยังไม่ถูกห้ามโดยตรง</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--sky);box-shadow:0 0 0 3px var(--sky)"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">ทศวรรษ 1970</div>
+          <div class="timeline-text"><strong>John Holt</strong> นักการศึกษาชาวอเมริกัน ออกหนังสือ "How Children Fail" และ "How Children Learn" ที่วิจารณ์ระบบโรงเรียนและจุดประกายยุคฟื้นฟู Homeschooling สมัยใหม่ เขาบัญญัติคำว่า "Unschooling"</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--indigo);box-shadow:0 0 0 3px var(--indigo)"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">ทศวรรษ 1980–1990</div>
+          <div class="timeline-text">กระแส Home School ระเบิดตัวในสหรัฐฯ รัฐต่างๆ เริ่มออกกฎหมายรับรอง Raymond Moore และ Dorothy Moore ตีพิมพ์งานวิจัยยืนยันประสิทธิผลของ Home School</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--dusty-rose);box-shadow:0 0 0 3px var(--dusty-rose)"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">ทศวรรษ 2000–ปัจจุบัน</div>
+          <div class="timeline-text">อินเทอร์เน็ตเปลี่ยนโฉม Home School ทั่วโลก แพลตฟอร์มออนไลน์ทำให้เข้าถึงง่ายขึ้น ประเทศไทยออก พ.ร.บ.การศึกษาแห่งชาติ พ.ศ. 2542 มาตรา 12 รับรองการศึกษาโดยครอบครัว (Family Education)</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>🇹🇭 Home School ในประเทศไทย</h2>
+    <p>ประเทศไทยเริ่มรับรอง Home School อย่างเป็นทางการตาม <strong>พ.ร.บ. การศึกษาแห่งชาติ พ.ศ. 2542</strong> มาตรา 12 ที่ระบุว่า "บิดามารดา หรือผู้ปกครองสามารถจัดการศึกษาขั้นพื้นฐานให้แก่บุตรหลานได้" และมีระเบียบกระทรวงศึกษาธิการ พ.ศ. 2547 กำกับดูแล</p>
+
+    <div class="info-card sage">
+      <div class="info-card-title"><span class="icon">⚖️</span> กรอบกฎหมายไทย</div>
+      <p style="margin:0;font-size:0.9rem;line-height:1.8"><strong>มาตรา 12:</strong> สิทธิในการจัดการศึกษาโดยครอบครัว<br><strong>ระเบียบ 2547:</strong> กำหนดหน้าที่ผู้ปกครอง การขึ้นทะเบียน และการประเมินผล<br><strong>สถิติปัจจุบัน:</strong> มีครอบครัวที่ทำ Home School ในไทยกว่า 2,000 ครอบครัว</p>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep"></div>
+
+<!-- ===== CHAPTER 2 ===== -->
+<div class="chapter-page" id="ch2">
+  <div class="chapter-hero hero-2">
+    <svg class="hero-geo" width="400" height="400" viewBox="0 0 400 400">
+      <circle cx="200" cy="200" r="160" fill="none" stroke="white" stroke-width="30"/>
+      <circle cx="200" cy="200" r="100" fill="none" stroke="white" stroke-width="20"/>
+      <circle cx="200" cy="200" r="40" fill="white" opacity="0.3"/>
+    </svg>
+    <div class="ch-hero-content">
+      <div class="ch-badge" style="background:rgba(255,255,255,0.15)">Chapter 02 • บุคคลสำคัญ</div>
+      <h2 class="ch-title">พวกเขาเปลี่ยนโลก<br>โดยไม่ต้องนั่งในห้องเรียน</h2>
+    </div>
+  </div>
+  <div class="chapter-body">
+    <p class="section-intro">ใครจะรู้ว่าบุคคลที่ยิ่งใหญ่ที่สุดในโลกหลายคน ไม่ได้ผ่านระบบโรงเรียนแบบดั้งเดิม? เรื่องราวของพวกเขาพิสูจน์ว่า ศักยภาพไม่ได้ถูกวัดด้วยห้องเรียน</p>
+
+    <div class="person-grid">
+      <div class="person-card">
+        <div class="person-avatar" style="background:linear-gradient(135deg,#FFF3D0,#FFE09A)">🍎</div>
+        <div class="person-name">Thomas Edison</div>
+        <div class="person-desc">นักประดิษฐ์ผู้สร้างหลอดไฟ โดนไล่ออกจากโรงเรียนเพราะครูคิดว่า "ปัญญาอ่อน" แม่จึงสอนที่บ้าน กลายเป็นอัจฉริยะที่ยิ่งใหญ่ที่สุดในประวัติศาสตร์</div>
+      </div>
+      <div class="person-card">
+        <div class="person-avatar" style="background:linear-gradient(135deg,#D0F0FF,#9ADCFF)">🎸</div>
+        <div class="person-name">Taylor Swift</div>
+        <div class="person-desc">ซูเปอร์สตาร์ระดับโลก เรียน Home School ระหว่างออกทัวร์คอนเสิร์ต สร้างสมดุลระหว่างอาชีพนักดนตรีและการศึกษา</div>
+      </div>
+      <div class="person-card">
+        <div class="person-avatar" style="background:linear-gradient(135deg,#FFD0E8,#FF9AC7)">🎾</div>
+        <div class="person-name">Venus & Serena Williams</div>
+        <div class="person-desc">แชมป์เทนนิสโลกสองพี่น้อง ได้รับการ Home School โดยพ่อ เพื่อให้มีเวลาฝึกซ้อมและเรียนรู้ควบคู่กัน</div>
+      </div>
+      <div class="person-card">
+        <div class="person-avatar" style="background:linear-gradient(135deg,#D0FFD8,#9AFFA8)">🚀</div>
+        <div class="person-name">Elon Musk (ลูกๆ)</div>
+        <div class="person-desc">ลูกชายของ Elon Musk เข้าเรียน "Ad Astra" โรงเรียนส่วนตัวที่สร้างขึ้นเอง ซึ่งเน้นการเรียนรู้แบบโครงงานและการแก้ปัญหา</div>
+      </div>
+      <div class="person-card">
+        <div class="person-avatar" style="background:linear-gradient(135deg,#F0D0FF,#D09AFF)">✍️</div>
+        <div class="person-name">Mark Twain</div>
+        <div class="person-desc">นักเขียนผู้ยิ่งใหญ่ชาวอเมริกัน เรียนที่โรงเรียนเพียง 5 ปี แล้วออกมาเรียนรู้ชีวิตจริงและการเขียน ผ่านการทำงานในโรงพิมพ์</div>
+      </div>
+      <div class="person-card">
+        <div class="person-avatar" style="background:linear-gradient(135deg,#FFE5D0,#FFC09A)">🎨</div>
+        <div class="person-name">Leonardo da Vinci</div>
+        <div class="person-desc">อัจฉริยะยุคฟื้นฟูศิลปะ เรียนนอกระบบส่วนใหญ่ ฝึกกับช่างฝีมือในเวิร์คช็อป เรียนรู้ผ่านการสังเกตธรรมชาติและการทดลองด้วยตนเอง</div>
+      </div>
+      <div class="person-card">
+        <div class="person-avatar" style="background:linear-gradient(135deg,#D0EEFF,#9AC7FF)">⚛️</div>
+        <div class="person-name">Albert Einstein</div>
+        <div class="person-desc">ไม่ใช่ homeschooler แบบเต็ม แต่ล้มเหลวในโรงเรียนรัฐ ก่อนเข้าโรงเรียนที่ใช้แนวทาง Montessori ซึ่งเปิดโอกาสให้เรียนรู้อย่างอิสระ</div>
+      </div>
+      <div class="person-card">
+        <div class="person-avatar" style="background:linear-gradient(135deg,#FFDDD0,#FFAA9A)">🏛️</div>
+        <div class="person-name">Abraham Lincoln</div>
+        <div class="person-desc">ประธานาธิบดีคนที่ 16 ของสหรัฐฯ มีการศึกษาในโรงเรียนรวมไม่ถึง 1 ปี เรียนรู้ส่วนใหญ่ด้วยตนเอง โดยเฉพาะการอ่านหนังสือ</div>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <div class="quote-text">"การศึกษาไม่ใช่การเรียนรู้จากข้อเท็จจริง แต่คือการฝึกจิตใจให้คิด" — Albert Einstein</div>
+      <div class="quote-author">— Albert Einstein นักฟิสิกส์ผู้ได้รับรางวัลโนเบล</div>
+    </div>
+
+    <h2>🇹🇭 บุคคลไทยที่เรียนนอกระบบหรือ Home School</h2>
+    <div class="info-card sky">
+      <div class="info-card-title"><span class="icon">🌟</span> ตัวอย่างในบริบทไทย</div>
+      <p style="margin:0;font-size:0.9rem;line-height:1.9">นักกีฬา ศิลปิน และนักเรียนไทยหลายคนได้รับการศึกษาแบบยืดหยุ่นควบคู่กับการพัฒนาทักษะเฉพาะด้าน เช่น นักหมากรุกรุ่นเยาว์ที่คว้าแชมป์โลก นักกีฬาแบดมินตันระดับนานาชาติ และนักดนตรีที่ผ่านการเรียนรู้นอกระบบโดยครอบครัว ซึ่งทั้งหมดพิสูจน์ว่าการเรียนรู้สามารถเกิดขึ้นในหลายรูปแบบ</p>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep"></div>
+
+<!-- ===== CHAPTER 3 ===== -->
+<div class="chapter-page" id="ch3">
+  <div class="chapter-hero hero-3">
+    <svg class="hero-geo" width="400" height="400" viewBox="0 0 400 400">
+      <rect x="60" y="60" width="280" height="280" rx="40" fill="none" stroke="white" stroke-width="25"/>
+      <rect x="120" y="120" width="160" height="160" rx="20" fill="none" stroke="white" stroke-width="15"/>
+      <circle cx="200" cy="200" r="30" fill="white" opacity="0.2"/>
+    </svg>
+    <div class="ch-hero-content">
+      <div class="ch-badge" style="background:rgba(255,255,255,0.15)">Chapter 03 • Learning Disabilities</div>
+      <h2 class="ch-title">LD คืออะไร?<br>เข้าใจลูกน้อยให้ลึกซึ้ง</h2>
+    </div>
+  </div>
+  <div class="chapter-body">
+    <p class="section-intro">LD ไม่ใช่ความโง่ ไม่ใช่ความขี้เกียจ และไม่ใช่ความผิดของลูก — มันคือวิธีที่สมองทำงานต่างออกไป และเมื่อเราเข้าใจ เราจะช่วยให้ลูกเบ่งบานได้</p>
+
+    <h2>🧠 LD คืออะไร?</h2>
+    <p><strong>Learning Disabilities (LD)</strong> หรือ ความบกพร่องทางการเรียนรู้ คือสภาวะที่สมองประมวลผลข้อมูลบางประเภทแตกต่างจากคนทั่วไป ทำให้มีความยากลำบากในการอ่าน เขียน คำนวณ หรือจัดระเบียบความคิด <strong>ไม่เกี่ยวกับระดับสติปัญญา</strong> เด็ก LD หลายคนมี IQ สูงกว่าค่าเฉลี่ย</p>
+
+    <div class="callout">
+      <div class="callout-icon">⚡</div>
+      <div>
+        <div class="callout-title">สถิติที่ควรรู้</div>
+        <div class="callout-text">15-20% ของประชากรโลกมีความบกพร่องทางการเรียนรู้ในรูปแบบใดรูปแบบหนึ่ง ในชั้นเรียน 30 คน อาจมีนักเรียน LD ถึง 4-6 คนที่ยังไม่ได้รับการวินิจฉัย</div>
+      </div>
+    </div>
+
+    <h2>📋 ประเภทของ LD</h2>
+    <div class="ld-grid">
+      <div class="ld-card" style="background:linear-gradient(135deg,#FFF0F0,#FFD5D5)">
+        <div class="ld-icon">📖</div>
+        <div class="ld-name">Dyslexia<br>ดิสเล็กเซีย</div>
+        <div class="ld-desc" style="color:#7A2020">ความยากลำบากในการอ่านและถอดรหัสคำ เด็กมักสับสนตัวอักษร อ่านช้า หรืออ่านถูกบ้างผิดบ้าง แม้ฝึกแล้วก็ยังติดขัด</div>
+      </div>
+      <div class="ld-card" style="background:linear-gradient(135deg,#F0F0FF,#D5D5FF)">
+        <div class="ld-icon">✏️</div>
+        <div class="ld-name">Dysgraphia<br>ดิสกราเฟีย</div>
+        <div class="ld-desc" style="color:#20207A">ความยากลำบากในการเขียน ลายมือแย่มาก จัดระเบียบความคิดลงกระดาษลำบาก แม้จะรู้คำตอบก็เขียนไม่ออก</div>
+      </div>
+      <div class="ld-card" style="background:linear-gradient(135deg,#F0FFF0,#D5FFD5)">
+        <div class="ld-icon">🔢</div>
+        <div class="ld-name">Dyscalculia<br>ดิสแคลคูเลีย</div>
+        <div class="ld-desc" style="color:#207A20">ความยากลำบากเฉพาะด้านคณิตศาสตร์ สับสนตัวเลข ทิศทาง จำสูตรไม่ได้ แต่อาจเก่งด้านภาษาหรือศิลปะมาก</div>
+      </div>
+      <div class="ld-card" style="background:linear-gradient(135deg,#FFFFF0,#FFFFD5)">
+        <div class="ld-icon">🗣️</div>
+        <div class="ld-name">Dysphasia<br>ดิสเฟเซีย</div>
+        <div class="ld-desc" style="color:#7A7A20">ความยากลำบากด้านภาษาและการสื่อสาร ทั้งการพูดและความเข้าใจภาษา อาจเกี่ยวข้องกับพัฒนาการด้านการพูด</div>
+      </div>
+      <div class="ld-card" style="background:linear-gradient(135deg,#FFF5F0,#FFD5C0)">
+        <div class="ld-icon">🏃</div>
+        <div class="ld-name">Dyspraxia<br>ดิสแพรคเซีย</div>
+        <div class="ld-desc" style="color:#7A3520">ความยากลำบากด้านการประสานงานของร่างกาย การเคลื่อนไหว และการวางแผนการเคลื่อนไหว</div>
+      </div>
+      <div class="ld-card" style="background:linear-gradient(135deg,#F5F0FF,#D5C0FF)">
+        <div class="ld-icon">🎯</div>
+        <div class="ld-name">ADHD<br>สมาธิสั้น</div>
+        <div class="ld-desc" style="color:#35207A">มักพบร่วมกับ LD สมาธิสั้น หุนหันพลันแล่น หรือเคลื่อนไหวมาก ทำให้การเรียนในห้องเรียนปกติยากลำบาก</div>
+      </div>
+    </div>
+
+    <h2>🔍 สัญญาณเตือนที่ผู้ปกครองควรสังเกต</h2>
+    <div class="info-card rose">
+      <div class="info-card-title"><span class="icon">🔔</span> สัญญาณที่พบบ่อย</div>
+      <p style="margin:0;font-size:0.9rem;line-height:2">
+        <strong>ด้านการอ่าน:</strong> อ่านช้ามาก สับสน ข-ข ป-ป ด-ด ง-ง บ-ป ม-น อ่านกลับหัว อ่านข้ามบรรทัด<br>
+        <strong>ด้านการเขียน:</strong> ลายมือแย่มาก เขียนตัวอักษรสลับ สะกดผิดซ้ำๆ แม้จะเรียนแล้ว<br>
+        <strong>ด้านคณิตศาสตร์:</strong> นับนิ้วตลอด จำตารางสูตรคูณไม่ได้ สับสนเครื่องหมาย + - × ÷<br>
+        <strong>ด้านสังคม:</strong> หลีกเลี่ยงการอ่านออกเสียง รู้สึกอับอาย หรือก้าวร้าวเมื่อถูกขอให้ทำงานที่ยาก
+      </p>
+    </div>
+
+    <h2>💚 Home School กับเด็ก LD</h2>
+    <p>Home School เป็นหนึ่งในทางเลือกที่ดีที่สุดสำหรับเด็ก LD เพราะสามารถปรับหลักสูตร จังหวะการเรียน และวิธีการสอนได้ตามความต้องการของเด็กแต่ละคน ไม่ต้องเปรียบเทียบกับเพื่อน และไม่ต้องรับแรงกดดันจากสังคมในห้องเรียน</p>
+
+    <div class="info-card">
+      <div class="info-card-title"><span class="icon">💡</span> จากประสบการณ์จริง</div>
+      <p style="margin:0;font-size:0.9rem;line-height:1.8">"ลูกฉันถูกวินิจฉัยว่าเป็น Dyslexia ตอนอายุ 7 ขวบ โรงเรียนบอกว่า 'ช้า' ครูบางคนให้นั่งที่โต๊ะหลัง เพื่อนล้อเลียน พอเราเริ่ม Home School เพียง 6 เดือน ลูกอ่านได้ เขียนได้ และที่สำคัญที่สุดคือ ยิ้มได้อีกครั้ง"</p>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep"></div>
+
+<!-- ===== CHAPTER 4 ===== -->
+<div class="chapter-page" id="ch4">
+  <div class="chapter-hero hero-4">
+    <svg class="hero-geo" width="400" height="400" viewBox="0 0 400 400">
+      <line x1="200" y1="20" x2="200" y2="380" stroke="white" stroke-width="3"/>
+      <line x1="20" y1="200" x2="380" y2="200" stroke="white" stroke-width="3"/>
+      <ellipse cx="200" cy="200" rx="180" ry="90" fill="none" stroke="white" stroke-width="20"/>
+      <ellipse cx="200" cy="200" rx="90" ry="180" fill="none" stroke="white" stroke-width="10"/>
+      <circle cx="200" cy="200" r="180" fill="none" stroke="white" stroke-width="5"/>
+    </svg>
+    <div class="ch-hero-content">
+      <div class="ch-badge" style="background:rgba(255,255,255,0.15)">Chapter 04 • นานาชาติ</div>
+      <h2 class="ch-title">โลกเขาทำ Home School<br>กันอย่างไร?</h2>
+    </div>
+  </div>
+  <div class="chapter-body">
+    <p class="section-intro">แต่ละประเทศมีแนวทางและกฎหมาย Home School ที่ต่างกัน แต่สิ่งที่เหมือนกันคือ ความเชื่อว่าผู้ปกครองสามารถเป็นครูที่ดีที่สุดของลูกได้</p>
+
+    <div class="country-grid">
+      <div class="country-card" style="background:linear-gradient(135deg,#EEF5FF,#D5E8FF)">
+        <span class="country-flag">🇺🇸</span>
+        <div class="country-name" style="color:#1A3D7A">สหรัฐอเมริกา</div>
+        <div class="country-details" style="color:#2A5A9E">กฎหมาย: ถูกกฎหมายใน 50 รัฐ แต่กฎต่างกันในแต่ละรัฐ<br>สถิติ: ~3.3 ล้านเด็ก (6% ของเด็กนักเรียน)<br>รูปแบบ: มีอิสระสูง บางรัฐต้องแจ้งเท่านั้น ไม่ต้องขออนุญาต<br>วิชาบังคับ: ขึ้นกับรัฐ บางรัฐไม่กำหนด</div>
+      </div>
+      <div class="country-card" style="background:linear-gradient(135deg,#F0FFF0,#C8FFC8)">
+        <span class="country-flag">🇬🇧</span>
+        <div class="country-name" style="color:#1A5C1A">สหราชอาณาจักร</div>
+        <div class="country-details" style="color:#2A7A2A">กฎหมาย: ถูกกฎหมาย ไม่ต้องขออนุญาต แค่แจ้งถอนออกจากโรงเรียน<br>สถิติ: เติบโต 75% ใน 5 ปีหลัง<br>รูปแบบ: ไม่บังคับรูปแบบ ยืดหยุ่นสูง<br>การประเมิน: ไม่บังคับ แต่แนะนำ</div>
+      </div>
+      <div class="country-card" style="background:linear-gradient(135deg,#FFF8EE,#FFE5C0)">
+        <span class="country-flag">🇩🇪</span>
+        <div class="country-name" style="color:#7A4A1A">เยอรมนี</div>
+        <div class="country-details" style="color:#9A5A1A">กฎหมาย: ผิดกฎหมาย! โรงเรียนเป็นภาคบังคับ<br>ผลที่ตามมา: ครอบครัวที่ทำ Home School อาจถูกปรับหรือสูญเสียสิทธิ์ปกครอง<br>เหตุผล: ระบบการศึกษาเยอรมันเชื่อในสังคมรวม</div>
+      </div>
+      <div class="country-card" style="background:linear-gradient(135deg,#FFF0F0,#FFD5D5)">
+        <span class="country-flag">🇫🇷</span>
+        <div class="country-name" style="color:#7A1A1A">ฝรั่งเศส</div>
+        <div class="country-details" style="color:#9A2A2A">กฎหมาย: ถูกกฎหมาย แต่ต้องลงทะเบียนและผ่านการตรวจสอบประจำปี<br>การตรวจ: เจ้าหน้าที่ตรวจบ้านทุกปี<br>ข้อกำหนด: ต้องครอบคลุมหลักสูตรแห่งชาติ</div>
+      </div>
+      <div class="country-card" style="background:linear-gradient(135deg,#F5FFF5,#C8FFDC)">
+        <span class="country-flag">🇦🇺</span>
+        <div class="country-name" style="color:#1A5C35">ออสเตรเลีย</div>
+        <div class="country-details" style="color:#2A7A50">กฎหมาย: ถูกกฎหมายในทุกรัฐ ต้องลงทะเบียน<br>รูปแบบ: มีหลักสูตรออนไลน์จากรัฐให้ใช้ฟรี<br>สถิติ: ~20,000 ครอบครัว<br>การประเมิน: ปีละครั้งกับหน่วยงานการศึกษา</div>
+      </div>
+      <div class="country-card" style="background:linear-gradient(135deg,#F5F0FF,#E0C8FF)">
+        <span class="country-flag">🇯🇵</span>
+        <div class="country-name" style="color:#3D1A7A">ญี่ปุ่น</div>
+        <div class="country-details" style="color:#5A2A9E">กฎหมาย: ไม่ได้รับรองอย่างเป็นทางการ แต่ไม่ผิดกฎหมาย<br>สถานการณ์: เด็กที่ปฏิเสธโรงเรียน (Futoko) เพิ่มขึ้นมาก<br>แนวโน้ม: กำลังผลักดันกฎหมายรับรอง</div>
+      </div>
+      <div class="country-card" style="background:linear-gradient(135deg,#FFF5E8,#FFE0B5)">
+        <span class="country-flag">🇮🇳</span>
+        <div class="country-name" style="color:#7A4A10">อินเดีย</div>
+        <div class="country-details" style="color:#9A5A15">กฎหมาย: เขตสีเทา — ไม่มีกฎหมายเฉพาะ<br>รูปแบบ: มีชุมชน Home School ที่ใหญ่มาก โดยเฉพาะชนชั้นกลาง<br>แนวโน้ม: เติบโตเร็วมากหลัง COVID-19</div>
+      </div>
+      <div class="country-card" style="background:linear-gradient(135deg,#EEFFF5,#C8FFE8)">
+        <span class="country-flag">🇹🇭</span>
+        <div class="country-name" style="color:#1A5C40">ประเทศไทย</div>
+        <div class="country-details" style="color:#2A7A55">กฎหมาย: ถูกกฎหมาย ตาม พ.ร.บ. 2542 มาตรา 12<br>การลงทะเบียน: กับสำนักงานเขตพื้นที่การศึกษา<br>การประเมิน: โดยสถานศึกษาที่รับรอง ทุก 3 ปี<br>สถิติ: ~2,000+ ครอบครัว</div>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <div class="quote-text">"ไม่มีรูปแบบ Home School แบบเดียวที่ใช่สำหรับทุกครอบครัว — สิ่งที่สำคัญที่สุดคือการพบแนวทางที่ใช่สำหรับลูกและครอบครัวคุณ"</div>
+      <div class="quote-author">— จากประสบการณ์ 20 ปีของผู้เขียน</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep"></div>
+
+<!-- ===== CHAPTER 5 ===== -->
+<div class="chapter-page" id="ch5">
+  <div class="chapter-hero hero-5">
+    <svg class="hero-geo" width="400" height="400" viewBox="0 0 400 400">
+      <path d="M200 30 L370 150 L300 320 L100 320 L30 150 Z" fill="none" stroke="white" stroke-width="25"/>
+      <path d="M200 100 L310 175 L270 295 L130 295 L90 175 Z" fill="none" stroke="white" stroke-width="15"/>
+    </svg>
+    <div class="ch-hero-content">
+      <div class="ch-badge" style="background:rgba(255,255,255,0.15)">Chapter 05 • การวัดผล</div>
+      <h2 class="ch-title">วัดผลอย่างไร?<br>เมื่อไม่มีข้อสอบปลายภาค</h2>
+    </div>
+  </div>
+  <div class="chapter-body">
+    <p class="section-intro">การประเมินผลใน Home School ไม่ใช่การสอบ แต่คือการสังเกตว่าลูกเติบโตขึ้นในแบบที่เขาควรจะเป็น</p>
+
+    <h2>📊 วิธีการประเมินผลใน Home School</h2>
+    <div class="assess-grid">
+      <div class="assess-card" style="background:linear-gradient(135deg,#FFF8E8,#FFE9B5)">
+        <div class="assess-num" style="color:var(--gold)">01</div>
+        <div class="assess-label">Portfolio Assessment</div>
+        <div class="assess-desc" style="color:#7A5A10">รวบรวมผลงานตลอดปี ภาพวาด โครงงาน รายงาน วิดีโอ แสดงพัฒนาการที่แท้จริง</div>
+      </div>
+      <div class="assess-card" style="background:linear-gradient(135deg,#EFF8FF,#C5E5FF)">
+        <div class="assess-num" style="color:var(--sky)">02</div>
+        <div class="assess-label">Observation Log</div>
+        <div class="assess-desc" style="color:#1A4A7A">บันทึกการเรียนรู้รายวัน เช่น วันนี้ลูกเรียนรู้เรื่องอะไร ถามคำถามอะไร แก้ปัญหาอย่างไร</div>
+      </div>
+      <div class="assess-card" style="background:linear-gradient(135deg,#EFF8EF,#C5E8C5)">
+        <div class="assess-num" style="color:var(--sage)">03</div>
+        <div class="assess-label">Project-Based</div>
+        <div class="assess-desc" style="color:#1A5A1A">วัดผลจากโครงงานจริง เช่น ทำอาหาร สร้างของ ทำสวน วิจัยหัวข้อที่สนใจ</div>
+      </div>
+      <div class="assess-card" style="background:linear-gradient(135deg,#FFF0F8,#FFD5EF)">
+        <div class="assess-num" style="color:var(--dusty-rose)">04</div>
+        <div class="assess-label">Self-Assessment</div>
+        <div class="assess-desc" style="color:#7A2050">ให้เด็กประเมินตนเอง "วันนี้หนูเรียนรู้อะไร? หนูภูมิใจอะไรบ้าง?"</div>
+      </div>
+    </div>
+
+    <h2>📋 การวัดระดับตามกฎหมายไทย</h2>
+    <div class="info-card">
+      <div class="info-card-title"><span class="icon">🏛️</span> ขั้นตอนการประเมินตาม กศน. / สพฐ.</div>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">ลงทะเบียนกับสถานศึกษาที่รับรอง</div>
+            <div class="step-desc">ติดต่อสำนักงานเขตพื้นที่การศึกษา หรือ กศน. เพื่อขึ้นทะเบียนนักเรียน Home School พร้อมแผนการเรียน</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">จัดทำแผนการเรียน (IEP)</div>
+            <div class="step-desc">วางแผนการเรียนรู้ที่ชัดเจน ครอบคลุมวิชาหลักตามหลักสูตรแกนกลาง และกิจกรรมพัฒนาผู้เรียน</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">บันทึกการเรียนรู้ตลอดปี</div>
+            <div class="step-desc">ทำ Learning Log รายวัน/รายสัปดาห์ รวบรวม Portfolio ผลงาน ถ่ายรูป/วิดีโอกิจกรรม</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">การประเมินผลกลางปีและปลายปี</div>
+            <div class="step-desc">พบผู้ประเมินจากสถานศึกษา นำเสนอผลงาน Portfolio อาจมีการสัมภาษณ์หรือทดสอบทักษะเฉพาะ</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-title">รับวุฒิการศึกษา</div>
+            <div class="step-desc">เมื่อครบหลักสูตรจะได้รับวุฒิการศึกษาเทียบเท่า ป.6, ม.3, ม.6 ตามระดับชั้น</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>📈 เครื่องมือประเมินที่แนะนำ</h2>
+    <div class="info-card sage">
+      <div class="info-card-title"><span class="icon">🛠️</span> เครื่องมือสำหรับผู้ปกครอง</div>
+      <p style="margin:0;font-size:0.9rem;line-height:2"><strong>สมุด Learning Journal:</strong> บันทึกรายวัน สั้นๆ แค่ 3-5 บรรทัด<br><strong>แฟ้มสะสมงาน (Portfolio):</strong> ผลงานดีที่สุดในแต่ละเดือน<br><strong>วิดีโอบันทึก:</strong> อย่างน้อยเดือนละครั้ง ให้เด็กอธิบายสิ่งที่เรียนรู้<br><strong>Mind Map:</strong> เด็กวาดแผนผังความคิดจากสิ่งที่เรียน<br><strong>Standardized Tests:</strong> เสริมด้วยข้อสอบมาตรฐานเพื่อเช็คระดับ</p>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep"></div>
+
+<!-- ===== CHAPTER 6 ===== -->
+<div class="chapter-page" id="ch6">
+  <div class="chapter-hero hero-6">
+    <svg class="hero-geo" width="400" height="400" viewBox="0 0 400 400">
+      <circle cx="130" cy="150" r="60" fill="none" stroke="white" stroke-width="20"/>
+      <circle cx="270" cy="150" r="60" fill="none" stroke="white" stroke-width="20"/>
+      <circle cx="200" cy="270" r="60" fill="none" stroke="white" stroke-width="20"/>
+      <line x1="130" y1="150" x2="270" y2="150" stroke="white" stroke-width="8"/>
+      <line x1="130" y1="150" x2="200" y2="270" stroke="white" stroke-width="8"/>
+      <line x1="270" y1="150" x2="200" y2="270" stroke="white" stroke-width="8"/>
+    </svg>
+    <div class="ch-hero-content">
+      <div class="ch-badge" style="background:rgba(255,255,255,0.15)">Chapter 06 • การเข้าสังคม</div>
+      <h2 class="ch-title">แล้วลูกจะมีเพื่อนไหม?<br>ความจริงเรื่องการเข้าสังคม</h2>
+    </div>
+  </div>
+  <div class="chapter-body">
+    <p class="section-intro">คำถามที่ได้ยินบ่อยที่สุดคือ "เด็ก Home School จะเข้ากับสังคมได้ไหม?" — คำตอบสั้นๆ คือ ได้ และมักจะดีกว่าด้วยซ้ำ</p>
+
+    <div class="callout">
+      <div class="callout-icon">🔬</div>
+      <div>
+        <div class="callout-title">งานวิจัยกล่าวว่า...</div>
+        <div class="callout-text">การศึกษาจาก National Home Education Research Institute (NHERI) พบว่าเด็ก Home School มีทักษะทางสังคมและอารมณ์สูงกว่าค่าเฉลี่ย เมื่อเติบโตเป็นผู้ใหญ่มีส่วนร่วมในชุมชนมากกว่า และมีความพอใจในชีวิตสูงกว่าคนที่ผ่านโรงเรียนปกติ</div>
+      </div>
+    </div>
+
+    <h2>🌐 ช่องทางการเข้าสังคมสำหรับเด็ก Home School</h2>
+    <div class="social-path">
+      <div class="social-node" style="border-color:rgba(201,146,42,0.3)">🏃 กิจกรรมกีฬา</div>
+      <div class="social-node" style="border-color:rgba(92,122,94,0.3)">🎨 ชมรมศิลปะ</div>
+      <div class="social-node" style="border-color:rgba(74,127,165,0.3)">🎵 เรียนดนตรี</div>
+      <div class="social-node" style="border-color:rgba(196,98,58,0.3)">📚 กลุ่ม Homeschool</div>
+      <div class="social-node" style="border-color:rgba(61,78,138,0.3)">⛪ กิจกรรมศาสนา</div>
+      <div class="social-node" style="border-color:rgba(201,123,123,0.3)">🌱 อาสาสมัคร</div>
+      <div class="social-node" style="border-color:rgba(201,146,42,0.3)">🏕️ ค่ายฤดูร้อน</div>
+      <div class="social-node" style="border-color:rgba(92,122,94,0.3)">💻 ชมรมออนไลน์</div>
+      <div class="social-node" style="border-color:rgba(74,127,165,0.3)">🎭 ละครเวที</div>
+      <div class="social-node" style="border-color:rgba(196,98,58,0.3)">👨‍👩‍👧 กิจกรรมครอบครัว</div>
+      <div class="social-node" style="border-color:rgba(61,78,138,0.3)">🏙️ Field Trip</div>
+      <div class="social-node" style="border-color:rgba(201,123,123,0.3)">🤝 การฝึกงาน</div>
+    </div>
+
+    <h2>❌ ความเข้าใจผิดที่พบบ่อย</h2>
+    <table class="compare-table" style="margin:20px 0">
+      <thead>
+        <tr>
+          <th style="background:var(--terracotta);width:50%">❌ ความเชื่อผิดๆ</th>
+          <th style="background:var(--sage);width:50%">✅ ความจริง</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fff8f8">
+          <td style="border-right:1px solid rgba(0,0,0,0.06)">
+            <strong style="color:var(--terracotta)">"เด็ก Home School ไม่มีเพื่อน"</strong>
+          </td>
+          <td>
+            เด็ก Home School มีเพื่อนหลากหลายช่วงอายุ<br>มีคุณภาพมิตรภาพที่ดีกว่า
+          </td>
+        </tr>
+        <tr style="background:#f8fff8">
+          <td style="border-right:1px solid rgba(0,0,0,0.06)">
+            <strong style="color:var(--terracotta)">"เด็กจะโดดเดี่ยว แปลกแยกจากสังคม"</strong>
+          </td>
+          <td>
+            งานวิจัยพบว่า homeschooler ผู้ใหญ่<br>มีส่วนร่วมในสังคมสูงกว่าค่าเฉลี่ย
+          </td>
+        </tr>
+        <tr style="background:#fff8f8">
+          <td style="border-right:1px solid rgba(0,0,0,0.06)">
+            <strong style="color:var(--terracotta)">"เด็กจะขาดทักษะการแก้ปัญหาความขัดแย้ง"</strong>
+          </td>
+          <td>
+            เด็ก Home School เรียนรู้การจัดการความขัดแย้ง<br>ในสภาพแวดล้อมจริง ไม่ใช่แค่ในห้องเรียน
+          </td>
+        </tr>
+        <tr style="background:#f8fff8">
+          <td style="border-right:1px solid rgba(0,0,0,0.06)">
+            <strong style="color:var(--terracotta)">"เด็กจะเข้ามหาวิทยาลัยไม่ได้"</strong>
+          </td>
+          <td>
+            มหาวิทยาลัยชั้นนำทั่วโลก รวมถึงในไทย<br>รับเด็ก Home School ผ่านระบบ Portfolio
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>👥 การสร้างชุมชน Home School</h2>
+    <p>การรวมกลุ่ม Homeschooler ในชุมชนเป็นสิ่งสำคัญมาก ทั้งสำหรับเด็กและผู้ปกครอง กลุ่ม Home School ในไทยที่แอคทีฟมีทั้งในกรุงเทพฯ เชียงใหม่ และอีกหลายจังหวัด มีกิจกรรมร่วม Field Trip ค่าย และวัน Showcase ให้เด็กนำเสนอผลงาน</p>
+  </div>
+</div>
+
+<div class="page-sep"></div>
+
+<!-- ===== CHAPTER 7 ===== -->
+<div class="chapter-page" id="ch7">
+  <div class="chapter-hero hero-7">
+    <svg class="hero-geo" width="400" height="400" viewBox="0 0 400 400">
+      <circle cx="140" cy="200" r="120" fill="none" stroke="white" stroke-width="25" opacity="0.8"/>
+      <circle cx="260" cy="200" r="120" fill="none" stroke="white" stroke-width="25" opacity="0.8"/>
+    </svg>
+    <div class="ch-hero-content">
+      <div class="ch-badge" style="background:rgba(255,255,255,0.15)">Chapter 07 • ความต่าง</div>
+      <h2 class="ch-title">เด็กความต้องการพิเศษ<br>vs เด็กความสามารถพิเศษ</h2>
+    </div>
+  </div>
+  <div class="chapter-body">
+    <p class="section-intro">สองกลุ่มนี้ต่างกันโดยสิ้นเชิง แต่ทั้งคู่มักถูกเข้าใจผิด และทั้งคู่ต่างก็ได้ประโยชน์จาก Home School อย่างมหาศาล</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th style="background:var(--indigo)">หัวข้อ</th>
+          <th style="background:var(--terracotta)">🌸 เด็กความต้องการพิเศษ<br><small>(Special Needs)</small></th>
+          <th style="background:var(--sage)">⭐ เด็กความสามารถพิเศษ<br><small>(Gifted Children)</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>คำนิยาม</strong></td>
+          <td>มีความบกพร่องหรือความท้าทายในการเรียนรู้ การสื่อสาร หรือพฤติกรรม ที่ต้องการการสนับสนุนพิเศษ</td>
+          <td>มีความสามารถหรือสติปัญญาสูงกว่าค่าเฉลี่ยอย่างมีนัยสำคัญ ในด้านวิชาการ ศิลปะ กีฬา หรือความฉลาดทางอารมณ์</td>
+        </tr>
+        <tr>
+          <td><strong>ตัวอย่าง</strong></td>
+          <td>เด็ก LD, ADHD, ออทิสซึม, ดาวน์ซินโดรม, ความบกพร่องทางการมองเห็น/ได้ยิน</td>
+          <td>เด็ก IQ สูง, อัจฉริยะด้านดนตรี/คณิตศาสตร์/กีฬา, นักประดิษฐ์รุ่นเยาว์</td>
+        </tr>
+        <tr>
+          <td><strong>ความท้าทายในโรงเรียน</strong></td>
+          <td>เรียนตามไม่ทัน ถูกเพื่อนล้อ ครูไม่มีเวลาดูแลพิเศษ สูญเสียความมั่นใจ</td>
+          <td>เบื่อเพราะเนื้อหาง่ายเกินไป กลายเป็นตัวปัญหา แสดงพฤติกรรมไม่เหมาะสมเพราะไม่ได้รับการกระตุ้น</td>
+        </tr>
+        <tr>
+          <td><strong>สิ่งที่ต้องการ</strong></td>
+          <td>ความยืดหยุ่น การสนับสนุน จังหวะการเรียนที่เหมาะสม ความเข้าใจและการยอมรับ</td>
+          <td>ความท้าทาย การเรียนรู้เชิงลึก เนื้อหาที่ก้าวหน้าเร็ว โอกาสสำรวจความสนใจ</td>
+        </tr>
+        <tr>
+          <td><strong>Home School ช่วยอย่างไร</strong></td>
+          <td>ปรับหลักสูตรตามความต้องการ ลดความกดดัน สร้างความมั่นใจอย่างค่อยเป็นค่อยไป</td>
+          <td>เรียนเร็ว เรียนลึก ข้ามชั้นได้ ทำโครงงานที่ซับซ้อน ไม่ถูกจำกัดด้วยอายุ</td>
+        </tr>
+        <tr>
+          <td><strong>สิ่งที่ผู้ปกครองต้องรู้</strong></td>
+          <td>ต้องเรียนรู้เรื่องความต้องการเฉพาะ อาจต้องการผู้เชี่ยวชาญร่วม</td>
+          <td>ต้องให้โอกาสพบกับผู้เชี่ยวชาญในสาขาที่สนใจ ป้องกันความเหนื่อยล้าทางปัญญา</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-card indigo">
+      <div class="info-card-title"><span class="icon">⚡</span> "Twice Exceptional" (2e) — เด็กที่อยู่ทั้งสองฝั่ง</div>
+      <p style="margin:0;font-size:0.9rem;line-height:1.8">เด็กบางคนเป็นทั้ง Gifted AND มี LD พร้อมกัน เรียกว่า "Twice Exceptional" เช่น เด็กที่มี IQ สูงมากแต่มี Dyslexia ด้วย กลุ่มนี้มักถูกมองข้ามในระบบโรงเรียน เพราะความสามารถสูงปิดบังความยากลำบาก Home School สามารถรองรับกลุ่มนี้ได้ดีที่สุด</p>
+    </div>
+
+    <div class="quote-box">
+      <div class="quote-text">"ทุกเด็กมีอัจฉริยะในตัว — แต่ถ้าคุณตัดสินปลาจากความสามารถในการปีนต้นไม้ มันจะใช้ชีวิตทั้งชีวิตเชื่อว่าตัวเองโง่"</div>
+      <div class="quote-author">— อ้างอิงจาก Albert Einstein</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep"></div>
+
+<!-- ===== CHAPTER 8 ===== -->
+<div class="chapter-page" id="ch8">
+  <div class="chapter-hero hero-8">
+    <svg class="hero-geo" width="400" height="400" viewBox="0 0 400 400">
+      <path d="M200 30 L370 370 L30 370 Z" fill="none" stroke="white" stroke-width="25"/>
+      <path d="M200 120 L310 370 L90 370 Z" fill="none" stroke="white" stroke-width="15"/>
+      <line x1="200" y1="200" x2="200" y2="370" stroke="white" stroke-width="10"/>
+    </svg>
+    <div class="ch-hero-content">
+      <div class="ch-badge" style="background:rgba(255,255,255,0.15)">Chapter 08 • เริ่มต้น</div>
+      <h2 class="ch-title">เริ่มต้น Home School<br>จากศูนย์ ทำได้จริง!</h2>
+    </div>
+  </div>
+  <div class="chapter-body">
+    <p class="section-intro">ผู้ปกครองหลายคนบอกว่า "ฉันไม่มีความรู้พอ" แต่ความจริงคือ คุณรู้จักลูกดีกว่าใครทั้งนั้น — แค่ต้องการเครื่องมือและแนวทางที่ถูกต้อง</p>
+
+    <h2>🗺️ แผนที่เริ่มต้น 90 วันแรก</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">สัปดาห์ที่ 1–2: ค้นหาและตัดสินใจ</div>
+          <div class="timeline-text">ศึกษากฎหมาย คุยกับครอบครัวอื่นที่ทำ Home School แล้ว ประเมินว่าตนเองพร้อมในแง่ใดบ้าง จัดการสภาพแวดล้อมในบ้านให้เอื้อต่อการเรียนรู้</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--sage);box-shadow:0 0 0 3px var(--sage)"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">สัปดาห์ที่ 3–4: ลงทะเบียนและวางแผน</div>
+          <div class="timeline-text">ยื่นเรื่องลงทะเบียนกับ สพฐ. หรือ กศน. ในพื้นที่ จัดทำแผนการเรียนรู้ เลือกหลักสูตรหรือสื่อการสอน ตั้ง "ปฏิทินการเรียนรู้" ของครอบครัว</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--sky);box-shadow:0 0 0 3px var(--sky)"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">เดือนที่ 2: ช่วง "Deschooling"</div>
+          <div class="timeline-text">ให้เวลาเด็กและตนเองถอนตัวจากระบบโรงเรียน ไม่ต้องรีบ "เรียน" ให้สำรวจความสนใจตามธรรมชาติ เป็นช่วงสำคัญมากโดยเฉพาะเด็กที่ผ่านประสบการณ์ไม่ดี</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--gold);box-shadow:0 0 0 3px var(--gold)"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">เดือนที่ 3: เริ่มรูปแบบที่ใช่</div>
+          <div class="timeline-text">เริ่มจังหวะการเรียนที่สม่ำเสมอ แต่ยังยืดหยุ่นได้ ปรับแต่ให้เหมาะกับลูก บันทึกสิ่งที่ได้ผลและไม่ได้ผล ทบทวนและปรับแผนตามความจำเป็น</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>📚 รูปแบบหลักสูตรที่นิยมใน Home School</h2>
+    <div class="country-grid">
+      <div class="country-card" style="background:linear-gradient(135deg,#FFF8EE,#FFE9C0)">
+        <span style="font-size:2rem;display:block;margin-bottom:12px">🏫</span>
+        <div class="country-name" style="color:#7A5010">Classical Education</div>
+        <div class="country-details" style="color:#9A6A20">เน้นการอ่าน ตรรกะ และวาทศาสตร์ แบ่งเป็น 3 ช่วง Trivium: Grammar Logic Rhetoric เหมาะกับครอบครัวที่ให้คุณค่าประวัติศาสตร์และวัฒนธรรม</div>
+      </div>
+      <div class="country-card" style="background:linear-gradient(135deg,#F0FFF5,#C0FFD5)">
+        <span style="font-size:2rem;display:block;margin-bottom:12px">🌿</span>
+        <div class="country-name" style="color:#1A5C35">Montessori</div>
+        <div class="country-details" style="color:#2A7A50">เด็กเรียนตามความสนใจตนเอง ครูเป็นผู้อำนวยความสะดวก ไม่มีการทดสอบ ให้ความสำคัญกับการเรียนรู้ด้วยมือ เหมาะกับเด็กปฐมวัยถึงประถม</div>
+      </div>
+      <div class="country-card" style="background:linear-gradient(135deg,#F5F0FF,#DCCFFF)">
+        <span style="font-size:2rem;display:block;margin-bottom:12px">🌊</span>
+        <div class="country-name" style="color:#3D1A7A">Unschooling</div>
+        <div class="country-details" style="color:#5A2A9E">ไม่มีหลักสูตรตายตัว เด็กเรียนตามความสนใจและชีวิตจริง ผู้ปกครองจัดสิ่งแวดล้อมให้อุดมสมบูรณ์ เหมาะกับครอบครัวที่เชื่อมั่นในธรรมชาติการเรียนรู้</div>
+      </div>
+      <div class="country-card" style="background:linear-gradient(135deg,#EEF5FF,#C5DCF5)">
+        <span style="font-size:2rem;display:block;margin-bottom:12px">💻</span>
+        <div class="country-name" style="color:#1A3D7A">Online/Hybrid</div>
+        <div class="country-details" style="color:#2A5A9E">ผสมเรียนออนไลน์กับการสอนที่บ้าน ใช้แพลตฟอร์ม Khan Academy, Coursera, YouTube เหมาะกับยุคปัจจุบัน ยืดหยุ่นสูง ประหยัดงบประมาณ</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">💛</div>
+      <div>
+        <div class="callout-title">ข้อความถึงผู้ปกครองที่กำลังลังเล</div>
+        <div class="callout-text">คุณไม่จำเป็นต้องสมบูรณ์แบบ คุณแค่ต้องพร้อมเรียนรู้ไปพร้อมกับลูก วันที่ยากจะมี วันที่สงสัยตัวเองจะมี แต่ทุกก้าวที่คุณเดินไปพร้อมกับลูก คือบทเรียนที่มีค่าที่สุดในชีวิต</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep"></div>
+
+<!-- ===== CHAPTER 9 ===== -->
+<div class="chapter-page" id="ch9">
+  <div class="chapter-hero hero-9">
+    <svg class="hero-geo" width="400" height="400" viewBox="0 0 400 400">
+      <path d="M30 380 Q200 20 370 380" fill="none" stroke="white" stroke-width="20"/>
+      <path d="M30 380 Q200 100 370 380" fill="none" stroke="white" stroke-width="12"/>
+      <circle cx="200" cy="120" r="40" fill="none" stroke="white" stroke-width="15"/>
+      <line x1="200" y1="160" x2="200" y2="380" stroke="white" stroke-width="8" stroke-dasharray="15 10"/>
+    </svg>
+    <div class="ch-hero-content">
+      <div class="ch-badge" style="background:rgba(255,255,255,0.15)">Chapter 09 • โน้มน้าวใจ</div>
+      <h2 class="ch-title">จุดประกายเด็กที่ดับสนิท<br>ให้กลับมาเรียนรู้อีกครั้ง</h2>
+    </div>
+  </div>
+  <div class="chapter-body">
+    <p class="section-intro">เด็กที่ปฏิเสธการเรียน ไม่ใช่เด็กขี้เกียจ แต่คือเด็กที่เจ็บปวด เด็กที่สูญเสียความเชื่อมั่นในตัวเอง เด็กที่รอการเข้าใจจากใครสักคน</p>
+
+    <h2>🧩 ทำไมเด็กถึงหลุดออกจากการเรียนรู้?</h2>
+    <div class="ld-grid">
+      <div class="ld-card" style="background:linear-gradient(135deg,#FFF0EE,#FFD5CF)">
+        <div class="ld-icon">💔</div>
+        <div class="ld-name" style="color:#7A2020">ถูกกลั่นแกล้ง</div>
+        <div class="ld-desc" style="color:#9A3030">ประสบการณ์เลวร้ายในโรงเรียนทำให้เชื่อมโยง "โรงเรียน = อันตราย"</div>
+      </div>
+      <div class="ld-card" style="background:linear-gradient(135deg,#FFF5EE,#FFDDC5)">
+        <div class="ld-icon">😓</div>
+        <div class="ld-name" style="color:#7A4020">ล้มเหลวซ้ำๆ</div>
+        <div class="ld-desc" style="color:#9A5030">เรียนไม่รู้เรื่อง สอบตก ถูกวิจารณ์ จนสูญเสียความมั่นใจโดยสิ้นเชิง</div>
+      </div>
+      <div class="ld-card" style="background:linear-gradient(135deg,#EEF0FF,#CCCFFF)">
+        <div class="ld-icon">😶</div>
+        <div class="ld-name" style="color:#202A7A">ไม่เห็นความหมาย</div>
+        <div class="ld-desc" style="color:#303A9A">ไม่รู้ว่าเรียนไปทำไม ไม่มีเป้าหมาย เนื้อหาไม่เกี่ยวกับชีวิตจริง</div>
+      </div>
+      <div class="ld-card" style="background:linear-gradient(135deg,#EEFFF0,#C5FFC8)">
+        <div class="ld-icon">🎮</div>
+        <div class="ld-name" style="color:#1A5C20">ถูกดูดซับโดยสื่อ</div>
+        <div class="ld-desc" style="color:#2A7A30">เกมและโซเชียลมีเดียให้ Dopamine เร็วกว่า ทำให้การเรียนดูน่าเบื่อมาก</div>
+      </div>
+    </div>
+
+    <h2>🌟 6 วิธีจุดประกายให้เด็กกลับมาเรียนรู้</h2>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num" style="background:var(--terracotta)">1</div>
+        <div class="step-content">
+          <div class="step-title">เริ่มจากสิ่งที่เขารัก ไม่ใช่สิ่งที่เราคิดว่าดี</div>
+          <div class="step-desc">ถ้าลูกชอบเกม ใช้เกมเป็นจุดเริ่ม — เรียนคณิตศาสตร์ผ่านการตั้งราคาไอเทม เรียนภาษาอังกฤษผ่าน Subtitle เรียนประวัติศาสตร์ผ่าน Age of Empires</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--sage)">2</div>
+        <div class="step-content">
+          <div class="step-title">หยุดใช้คำว่า "เรียน" ชั่วคราว</div>
+          <div class="step-desc">แทนที่ด้วย "ทดลอง", "สำรวจ", "ลอง", "เล่น" — สมองของเด็กตอบสนองต่อการเรียนรู้ในบรรยากาศที่ปลอดภัยและสนุก ไม่ใช่บรรยากาศที่กดดัน</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--sky)">3</div>
+        <div class="step-content">
+          <div class="step-title">ฟังเขา ไม่ใช่แค่พูดให้เขาฟัง</div>
+          <div class="step-desc">ถามคำถามเปิดกว้าง "เธออยากรู้เรื่องอะไรมากที่สุด?" "ถ้าไม่ต้องเรียนวิชาในโรงเรียน เธอจะเรียนเรื่องอะไร?" — ฟังคำตอบด้วยใจที่เปิดกว้าง</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--gold)">4</div>
+        <div class="step-content">
+          <div class="step-title">สร้าง "ชัยชนะเล็กๆ" ทุกวัน</div>
+          <div class="step-desc">เริ่มจากสิ่งที่ง่ายมากพอที่จะประสบความสำเร็จ แล้วค่อยๆ เพิ่มความยาก ทุกครั้งที่สำเร็จ Dopamine จะบอกสมองว่า "การเรียนรู้ให้ความสุข"</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--indigo)">5</div>
+        <div class="step-content">
+          <div class="step-title">เชื่อมการเรียนรู้กับอนาคตที่เขาฝัน</div>
+          <div class="step-desc">ช่วยให้เขาเห็นว่าสิ่งที่เรียนเชื่อมกับความฝันของเขา อยากเป็น YouTuber ต้องรู้เรื่องภาษา การตัดต่อ การตลาด — ทุกสิ่งเชื่อมกัน</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--dusty-rose)">6</div>
+        <div class="step-content">
+          <div class="step-title">เป็นแบบอย่างของผู้ที่ยังเรียนรู้อยู่</div>
+          <div class="step-desc">เรียนรู้สิ่งใหม่ต่อหน้าลูก บอกว่า "วันนี้แม่/พ่อกำลังเรียนเรื่องนี้อยู่ มันยากแต่สนุกมาก" เด็กเรียนรู้โดยเลียนแบบ ไม่ใช่โดยคำสั่ง</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <div class="quote-text">"วันที่ลูกฉันเงียบ ไม่พูด ไม่ออกจากห้อง ฉันไม่ได้บังคับให้เขาเรียน ฉันแค่นั่งข้างๆ เขา บอกว่าแม่อยู่ตรงนี้ แค่นั้น — 3 เดือนต่อมา เขาถามว่า 'แม่ หนูอยากเรียนเรื่องดาราศาสตร์ ทำได้ไหม?' นั่นคือวันที่ Home School เริ่มต้นอย่างแท้จริง"</div>
+      <div class="quote-author">— ผู้เขียน จากประสบการณ์กับลูกชาย</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep"></div>
+
+<!-- ===== BACK MATTER ===== -->
+<div class="backmatter">
+  <div class="back-title">🌱 บทส่งท้าย</div>
+  <p class="back-text">
+    Home School ไม่ใช่คำตอบสำหรับทุกคน แต่สำหรับครอบครัวที่เลือกเส้นทางนี้ มันคือการลงทุนที่ยิ่งใหญ่ที่สุดที่พ่อแม่จะมอบให้ลูกได้ ไม่ใช่แค่ความรู้ แต่คือความเชื่อว่า "หนูเป็นคนสำคัญพอที่แม่/พ่อจะเรียนรู้ไปพร้อมกับหนู"
+    <br><br>
+    ขอให้ทุกครอบครัวพบเส้นทางการเรียนรู้ที่ใช่ และขอให้เด็กทุกคนเติบโตขึ้นด้วยความเชื่อว่า ตนเองมีคุณค่า มีความสามารถ และมีความฝันที่สมควรได้รับการสนับสนุน
+  </p>
+  <div class="back-tags">
+    <span class="back-tag">#HomeSchool</span>
+    <span class="back-tag">#การศึกษานอกระบบ</span>
+    <span class="back-tag">#เด็กLD</span>
+    <span class="back-tag">#ครอบครัวเรียนรู้</span>
+    <span class="back-tag">#ทางเลือกการศึกษา</span>
+    <span class="back-tag">#เด็กพิเศษ</span>
+    <span class="back-tag">#Unschooling</span>
+    <span class="back-tag">#กศน</span>
+    <span class="back-tag">#PortfolioLearning</span>
+  </div>
+  <div style="margin-top:50px;padding-top:30px;border-top:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.3);font-size:0.8rem">
+    © 2024 Home School Thailand | สงวนสิทธิ์ตามกฎหมาย
+  </div>
+</div>
+
+</body>
+</html>
