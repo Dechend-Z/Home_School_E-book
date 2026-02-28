@@ -814,95 +814,129 @@
   .page-break { page-break-before: always; break-before: page; }
   .no-break { page-break-inside: avoid; break-inside: avoid; }
 
-  /* ===== PRINT / PDF EXPORT STYLES ===== */
-  @media print {
-    @page {
-      size: A4;
-      margin: 20mm;
-    }
+ /* ===== PRINT / PDF EXPORT STYLES ===== */
+@media print {
 
-    html, body {
-      width: 210mm;
-      min-height: 297mm;
-      margin: 0;
-      padding: 0;
-      background: white !important;
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-      color-adjust: exact !important;
-    }
-
-    /* Hide navigation */
-    .nav-bar { display: none !important; }
-
-    /* Ensure each chapter starts on new page */
-    .cover, .toc-page, .chapter-page {
-      page-break-before: always;
-      break-before: page;
-      min-height: 297mm;
-      margin: 0;
-      width: 100%;
-    }
-
-    .cover { page-break-before: auto; }
-
-    /* Prevent elements from breaking */
-    .info-card, .quote-box, .callout, .person-card, .country-card,
-    .ld-card, .assess-card, .social-node, .timeline-item, .step-item,
-    .toc-item, .cover-author-box {
-      page-break-inside: avoid;
-      break-inside: avoid;
-    }
-
-    /* Prevent table rows from splitting */
-    table tr {
-      page-break-inside: avoid;
-      break-inside: avoid;
-    }
-
-    /* Repeat table headers */
-    thead {
-      display: table-header-group;
-    }
-
-    tfoot {
-      display: table-footer-group;
-    }
-
-    /* Ensure background colors are visible */
-    * {
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-      color-adjust: exact !important;
-    }
-
-    .cover, .backmatter {
-      background: var(--warm-brown) !important;
-    }
-
-    .chapter-hero {
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-    }
-
-    /* Adjust page separators */
-    .page-sep {
-      page-break-before: always;
-      break-before: page;
-    }
-
-    /* Ensure images and graphics print properly */
-    .cover-mandala, .hero-geo {
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-    }
-
-    /* Prevent orphans and widows */
-    p, h2, h3 {
-      orphans: 3;
-      widows: 3;
-    }
+  @page {
+    size: A4;
+    margin: 20mm;
   }
+
+  html, body {
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Remove sticky + screen effects */
+  .nav-bar {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+  }
+
+  /* --- IMPORTANT: Remove forced 297mm height --- */
+  .cover,
+  .toc-page,
+  .chapter-page,
+  .backmatter {
+    min-height: auto !important;
+    height: auto !important;
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .cover {
+    page-break-before: auto;
+  }
+
+  /* Prevent content shifting */
+  .chapter-body,
+  .toc-page,
+  .backmatter {
+    padding: 0 !important;
+  }
+
+  /* HERO FIX */
+  .chapter-hero {
+    height: auto !important;
+    padding: 30px 0 !important;
+  }
+
+  /* Prevent breaking inside important blocks */
+  .info-card,
+  .quote-box,
+  .callout,
+  .person-card,
+  .country-card,
+  .ld-card,
+  .assess-card,
+  .timeline-item,
+  .step-item,
+  .toc-item,
+  .cover-author-box {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* ===== TABLE FIX ===== */
+
+  table {
+    page-break-inside: auto;
+    break-inside: auto;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  th, td {
+    page-break-inside: avoid !important;
+  }
+
+  /* Prevent grid splitting badly */
+  .person-grid,
+  .country-grid,
+  .ld-grid,
+  .assess-grid {
+    display: block;
+  }
+
+  .person-card,
+  .country-card,
+  .ld-card,
+  .assess-card {
+    margin-bottom: 20px;
+  }
+
+  /* Avoid text widows/orphans */
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Keep backgrounds visible */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+}
 </style>
 </head>
 <body>
